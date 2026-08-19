@@ -79,14 +79,18 @@ export default function Navbar({ lang, setLang, activeSection, theme, toggleThem
               <span>{isTa ? 'English' : 'தமிழ்'}</span>
             </button>
 
-            {/* Mobile menu toggle */}
+            {/* 3-Line Hamburger Mobile Toggle */}
             <button
-              className={`mobile-toggle${isLight ? ' light-mode' : ''}`}
+              className={`mobile-toggle${mobileOpen ? ' open' : ''}${isLight ? ' light-mode' : ''}`}
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
             >
-              {mobileOpen ? '✕' : '☰'}
+              <span className="hamburger-box">
+                <span className="hamburger-line line-1" />
+                <span className="hamburger-line line-2" />
+                <span className="hamburger-line line-3" />
+              </span>
             </button>
           </div>
         </div>
@@ -94,55 +98,59 @@ export default function Navbar({ lang, setLang, activeSection, theme, toggleThem
 
       {/* Mobile Navigation Drawer */}
       <div className={`mobile-nav${mobileOpen ? ' open' : ''}${isLight ? ' light-mode' : ''}`}>
-        {links.map(l => (
-          <a
-            key={l.id}
-            href={`#${l.id}`}
-            onClick={() => setMobileOpen(false)}
-            className={activeSection === l.id ? 'active' : ''}
+        <div className="mobile-nav-links">
+          {links.map(l => (
+            <a
+              key={l.id}
+              href={`#${l.id}`}
+              onClick={() => setMobileOpen(false)}
+              className={activeSection === l.id ? 'active' : ''}
+            >
+              {isTa ? l.labelTa : l.labelEn}
+            </a>
+          ))}
+        </div>
+
+        <div className="mobile-nav-actions">
+          <button
+            className="mobile-theme-toggle"
+            onClick={() => { toggleTheme(); setMobileOpen(false); }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
           >
-            {isTa ? l.labelTa : l.labelEn}
+            {theme === 'dark' ? (
+              <>
+                <SunIcon size={16} color={brandGold} />
+                <span>{isTa ? 'ஒளி பயன்முறை' : 'Light Mode'}</span>
+              </>
+            ) : (
+              <>
+                <MoonIcon size={16} color={brandGold} />
+                <span>{isTa ? 'இரவு பயன்முறை' : 'Dark Mode'}</span>
+              </>
+            )}
+          </button>
+
+          <button
+            className="mobile-lang-toggle"
+            onClick={() => { setLang(isTa ? 'en' : 'ta'); setMobileOpen(false); }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+          >
+            <GlobeIcon size={16} color={brandGold} />
+            <span>{isTa ? 'Switch to English' : 'தமிழுக்கு மாறு'}</span>
+          </button>
+
+          <a
+            href={FORM_URL}
+            onClick={() => setMobileOpen(false)}
+            className="join-btn mobile-join-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}
+          >
+            <StarIcon size={14} color="#000000" />
+            <span>{isTa ? 'உறுப்பினராக இணையுங்கள்' : 'Become a Member'}</span>
           </a>
-        ))}
-
-        <button
-          className="mobile-theme-toggle"
-          onClick={() => { toggleTheme(); setMobileOpen(false); }}
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
-        >
-          {theme === 'dark' ? (
-            <>
-              <SunIcon size={16} color={brandGold} />
-              <span>{isTa ? 'ஒளி பயன்முறை' : 'Light Mode'}</span>
-            </>
-          ) : (
-            <>
-              <MoonIcon size={16} color={brandGold} />
-              <span>{isTa ? 'இரவு பயன்முறை' : 'Dark Mode'}</span>
-            </>
-          )}
-        </button>
-
-        <button
-          className="mobile-lang-toggle"
-          onClick={() => { setLang(isTa ? 'en' : 'ta'); setMobileOpen(false); }}
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
-        >
-          <GlobeIcon size={16} color={brandGold} />
-          <span>{isTa ? 'Switch to English' : 'தமிழுக்கு மாறு'}</span>
-        </button>
-
-        <a
-          href={FORM_URL}
-          onClick={() => setMobileOpen(false)}
-          className="join-btn mobile-join-btn"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}
-        >
-          <StarIcon size={14} color="#000000" />
-          <span>{isTa ? 'உறுப்பினராக இணையுங்கள்' : 'Become a Member'}</span>
-        </a>
+        </div>
       </div>
     </>
   );
