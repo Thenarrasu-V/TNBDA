@@ -4943,9 +4943,7 @@ body.light-mode::-webkit-scrollbar-thumb {
   }
 
   .hero-stats {
-    order: 3;
-    width: 100%;
-    margin-top: 0.5rem;
+    display: none !important;
   }
 
   .tiers-row { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
