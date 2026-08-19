@@ -53,7 +53,6 @@ export default function Navbar({ lang, setLang, activeSection, theme, toggleThem
               onClick={toggleTheme}
               aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
               title={isLight ? 'Dark Mode' : 'Light Mode'}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
             >
               {theme === 'dark' ? (
                 <>
@@ -73,7 +72,6 @@ export default function Navbar({ lang, setLang, activeSection, theme, toggleThem
               className={`lang-toggle${isLight ? ' light-mode' : ''}`}
               onClick={() => setLang(isTa ? 'en' : 'ta')}
               aria-label={isTa ? 'Switch to English' : 'தமிழுக்கு மாறு'}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
             >
               <GlobeIcon size={14} color={brandGold} />
               <span>{isTa ? 'English' : 'தமிழ்'}</span>

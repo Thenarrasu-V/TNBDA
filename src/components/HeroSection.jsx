@@ -74,8 +74,8 @@ export default function HeroSection({ lang, theme, intensity = 'medium' }) {
         <div className="container">
           <div className="hero-layout">
 
-            {/* ── LEFT: Main Message ── */}
-            <div>
+            {/* ── LEFT TOP: Text & CTAs ── */}
+            <div className="hero-text-box">
               <div className="hero-eyebrow animate-up delay-1">
                 <div className="hero-eyebrow-line" />
                 <span className="hero-eyebrow-text">
@@ -114,28 +114,9 @@ export default function HeroSection({ lang, theme, intensity = 'medium' }) {
                   {isTa ? 'உறுப்பினராகுங்கள்' : 'Become a Member'}
                 </a>
               </div>
-
-              <div className="hero-stats animate-up delay-5">
-                <div className="hero-stat">
-                  <div className="number">20</div>
-                  <div className="label">{isTa ? 'முக்கிய நோக்கங்கள்' : 'Core Objectives'}</div>
-                </div>
-                <div className="hero-stat">
-                  <div className="number">20</div>
-                  <div className="label">{isTa ? 'சட்ட திட்டங்கள்' : 'Rules'}</div>
-                </div>
-                <div className="hero-stat">
-                  <div className="number">20</div>
-                  <div className="label">{isTa ? 'சமூக சேவைகள்' : 'Welfare Drives'}</div>
-                </div>
-                <div className="hero-stat">
-                  <div className="number">5</div>
-                  <div className="label">{isTa ? 'வளர்ச்சி நிலைகள்' : 'Growth Tiers'}</div>
-                </div>
-              </div>
             </div>
 
-            {/* ── RIGHT: Premium Founder Card ── */}
+            {/* ── RIGHT: Premium Founder Card (On Mobile: Appears immediately after CTAs) ── */}
             <div className="founder-card-perspective">
               <article
                 ref={cardRef}
@@ -205,6 +186,26 @@ export default function HeroSection({ lang, theme, intensity = 'medium' }) {
                   </a>
                 </div>
               </article>
+            </div>
+
+            {/* ── LEFT BOTTOM: Hero Stats ── */}
+            <div className="hero-stats animate-up delay-5">
+              <div className="hero-stat">
+                <div className="number">20</div>
+                <div className="label">{isTa ? 'முக்கிய நோக்கங்கள்' : 'Core Objectives'}</div>
+              </div>
+              <div className="hero-stat">
+                <div className="number">20</div>
+                <div className="label">{isTa ? 'சட்ட திட்டங்கள்' : 'Rules'}</div>
+              </div>
+              <div className="hero-stat">
+                <div className="number">20</div>
+                <div className="label">{isTa ? 'சமூக சேவைகள்' : 'Welfare Drives'}</div>
+              </div>
+              <div className="hero-stat">
+                <div className="number">5</div>
+                <div className="label">{isTa ? 'வளர்ச்சி நிலைகள்' : 'Growth Tiers'}</div>
+              </div>
             </div>
 
           </div>
